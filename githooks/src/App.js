@@ -14,6 +14,10 @@ function App() {
 
   const [location, setLocation] = useState({})
 
+  const initialData = { name: '', password: ''}
+
+  const [formData, setFormData] = useState(initialData)
+
   useEffect( () => {
     const numFav = repos.filter(item => item.favorite === true)
 
@@ -31,20 +35,20 @@ function App() {
     setRepos(data);
   }, []);
 
-    function handleRepositorie() {
-      setRepos([...repos, {id: Math.random(), name: `repo-${Math.random()}`}])
-    };
+  function handleRepositorie() {
+    setRepos([...repos, {id: Math.random(), name: `repo-${Math.random()}`}])
+  };
 
-    function handlePosition(data) {
-      const { coords:{latitude, longitude} } = data
-      console.log('aaaa', latitude, longitude, data)
-      setLocation({ latitude, longitude })
-    }
+  function handlePosition(data) {
+    const { coords:{latitude, longitude} } = data
+    console.log('aaaa', latitude, longitude, data)
+    setLocation({ latitude, longitude })
+  }
+  
+  async function fetchData() {
+    const response = await fetch('https://api.github.com/users/diego3g/repos');
+    const data = await response.json();
     
-    async function fetchData() {
-      const response = await fetch('https://api.github.com/users/diego3g/repos');
-      const data = await response.json();
-      
     return data;
   }
 
@@ -53,34 +57,60 @@ function App() {
     
     setRepos(newRepos);
   }
+  
+  const handleChange = event => {
+    const { id, value } = event.target
+    console.log('event::', id, value)
+    setFormData({ ...formData, [id]: value })
+  }
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    // ... post login user
+    console.log('formData', formData);
+  }
 
   return (
-    <>
-      <h1>Position:</h1>
-      <h3>latitude:{location.latitude}</h3>
-      <h3>longitude:{location.longitude}</h3>
-      <ul>
-        {repos.map(item => (
-            <li key={item.id}>
-              {!!item.favorite ? (
-                <FaCheckSquare></FaCheckSquare>
-               ) :
-               (
-                 <FaSquare></FaSquare>
-               ) }
-              {item.name}
-              {!item.favorite? (
-                <button onClick={() => handleFavorite(item.id, true)}> AddFavorite </button>
-              ) : 
-              (
-                <button onClick={() => handleFavorite(item.id, false)}> RemoveFavorite </button>
-              )}
-            </li>
-            ))}
-      </ul>
-      <button onClick={handleRepositorie}> Add Repo </button>
-    </ >
+    <view style={{ flex: 1, flexDirection:'row' }}>
+      <view style={{ flex:0.5 }}>
+        <h1>Position:</h1>
+        <h3>latitude:{location.latitude}</h3>
+        <h3>longitude:{location.longitude}</h3>
+
+        <form onSubmit={handleSubmit}>
+          <h1>Componente Login</h1>
+
+          <label>UserName</label>
+          <input type='text' id='username' onChange={handleChange} value={formData.username} />
+          
+          <label>Password</label>
+          <input type='password' id='password' onChange={handleChange} value={formData.password} />
+          <button type='submit'>Entrar</button>
+        </form>
+      </view>
+      <view style={{ flex:0.5 }}>
+        <ul>
+          {repos.map(item => (
+              <li key={item.id}>
+                {!!item.favorite ? (
+                  <FaCheckSquare></FaCheckSquare>
+                ) :
+                (
+                  <FaSquare></FaSquare>
+                ) }
+                {item.name}
+                {!item.favorite? (
+                  <button onClick={() => handleFavorite(item.id, true)}> AddFavorite </button>
+                ) : 
+                (
+                  <button onClick={() => handleFavorite(item.id, false)}> RemoveFavorite </button>
+                )}
+              </li>
+              ))}
+        </ul>
+        <button onClick={handleRepositorie}> Add Repo </button>
+      </view>
+    </view>
   );
 }
 
