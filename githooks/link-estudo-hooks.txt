@@ -1,0 +1,28 @@
+###############################PARTE 1##############################
+React Hooks: Como utilizar, motivações e exemplos práticos
+https://blog.rocketseat.com.br/react-hooks/
+
+React Hooks na prática | Diego Fernandes 32 min e 52 seg
+https://www.youtube.com/watch?v=6WB16wZS61c
+
+###############################PARTE 2##############################
+ Ver useCOntext, UseCallback, useMemo, useImperativeHandle
+React Hooks: por que devemos colocar funções no array de dependências do useEffecs?
+https://medium.com/rd-shipit/react-hooks-por-que-devemos-colocar-fun%C3%A7%C3%B5es-no-array-de-depend%C3%AAncias-do-useeffecs-6ba483c57ae
+
+React: Quando usar useLayoutEffect ao invés de useEffect
+https://medium.com/@oieduardorabelo/react-quando-usar-uselayouteffect-ao-inv%C3%A9s-de-useeffect-9f2157396aac
+
+When to useMemo and useCallback
+https://kentcdodds.com/blog/usememo-and-usecallback
+
+###############################ASSUNTO VARIADO##############################
+varias playlists
+https://github.com/rehooks/awesome-react-hooks
+
+
+Doc reactjs
+https://pt-br.reactjs.org/docs/hooks-overview.html
+
+
+

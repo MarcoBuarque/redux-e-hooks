@@ -1,0 +1,16 @@
+Hooks são funções que permitem a você “ligar-se” aos recursos de state e 
+ciclo de vida do React a partir de componentes funcionais. 
+
+Regras dos Hooks:
+
+-Hooks não funcionam dentro de classes.
+
+-Apenas chame Hooks no nível mais alto. 
+ Não chame Hooks dentro de loops, condições ou funções aninhadas.
+
+-Apenas chame Hooks de componentes funcionais. Não chame Hooks de funções JavaScript comuns
+
+Hooks de efeitos
+São utilizados para chamar operações de efeitos colaterais
+ex: Um botão que faz o fetch de dados e  o componente sectionList é atualizado com esses dados
+tem o mesmo papel de componentDidUpdate, componentWillUnmont, componentDidMount
