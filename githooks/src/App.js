@@ -47,13 +47,11 @@ function App() {
     setLocation({ latitude, longitude })
   }
   
-  useCallback(() => {
-    async function fetchData() {
-      const response = await fetch(URI);
-      const data = await response.json();
-      
-      setRepos(data);
-    }
+  const fetchData = useCallback(async () => {
+    const response = await fetch(URI);
+    const data = await response.json();
+    
+    setRepos(data);
   }, [URI])
 
   function handleFavorite(id, check) {
