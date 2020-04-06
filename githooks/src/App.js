@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { FaCheckSquare, FaSquare } from 'react-icons/fa'
 
 // useState = valor default do state
@@ -6,6 +6,9 @@ import { FaCheckSquare, FaSquare } from 'react-icons/fa'
 // useEffect = monitora o ciclo de vida dos componentes e faz a determinada ação de acordo com alterações que esses componentes sofrem
 // a função anonima no retorno do useEffect equivale ao componentWillUnmount
 function App() {
+
+  const URI = 'https://api.github.com/users/diego3g/repos'
+
   const [repos, setRepos] = useState([
     {id: 1, name: 'repo-test'},
     {id: 2, name: 'repo-test2'},
@@ -30,9 +33,8 @@ function App() {
     return () => navigator.geolocation.clearWatch(watchId)
   }, [])
 
-  useEffect(async () => {
-    const data = await fetchData();
-    setRepos(data);
+  useEffect(() => {
+    fetchData();
   }, []);
 
   function handleRepositorie() {
@@ -45,12 +47,14 @@ function App() {
     setLocation({ latitude, longitude })
   }
   
-  async function fetchData() {
-    const response = await fetch('https://api.github.com/users/diego3g/repos');
-    const data = await response.json();
-    
-    return data;
-  }
+  useCallback(() => {
+    async function fetchData() {
+      const response = await fetch(URI);
+      const data = await response.json();
+      
+      setRepos(data);
+    }
+  }, [URI])
 
   function handleFavorite(id, check) {
     const newRepos = repos.map(repositorie => repositorie.id === id ? {...repositorie, favorite: check} : {...repositorie});
