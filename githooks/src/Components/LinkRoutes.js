@@ -3,18 +3,22 @@ import { Link } from 'react-router-dom'
 
 import { routesArray } from './../Utils/routesUtils'
 
-function LinkRoutes() {
-    return (
-      <div>
-        {routesArray.map(route => {return (
-            <button key={route}>
-              <text>{route}</text>
-              <Link to={route}/>
-            </button>
-          )}
-        )}
-      </div>
-    )
+function LinkRoutes({ currentPage = '/' }) {
+  return (
+    <div>
+      {routesArray.map(
+        route => { return route === currentPage ? null :
+           (
+            <div>
+              <Link to={`${route}?previousPage=${currentPage}`}>
+                {route}
+              </Link>
+            </div>
+          )
+      }
+      )}
+    </div>
+  )
 }
 
 export default memo(LinkRoutes)

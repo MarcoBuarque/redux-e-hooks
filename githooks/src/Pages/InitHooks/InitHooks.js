@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { FaCheckSquare, FaSquare } from 'react-icons/fa'
 
+import LinkRoutes from './../../Components/LinkRoutes'
+import GoBack from './../../Components/GoBack'
+
 // useState = valor default do state
 // segundo parametro do array = this.setState
 // useEffect = monitora o ciclo de vida dos componentes e faz a determinada ação de acordo com alterações que esses componentes sofrem
@@ -43,7 +46,7 @@ export default function InitHooks() {
 
   function handlePosition(data) {
     const { coords:{latitude, longitude} } = data
-    console.log('aaaa', latitude, longitude, data)
+    console.log('initHooks handlePosition', latitude, longitude, data)
     setLocation({ latitude, longitude })
   }
   
@@ -74,6 +77,8 @@ export default function InitHooks() {
 
   return (
     <view style={{ flex: 1, flexDirection:'row' }}>
+      <GoBack previousPage='naoFinalizado' />
+      <LinkRoutes currentPage='/InitHooks' />
       <view style={{ flex:0.5 }}>
         <h1>Position:</h1>
         <h3>latitude:{location.latitude}</h3>
