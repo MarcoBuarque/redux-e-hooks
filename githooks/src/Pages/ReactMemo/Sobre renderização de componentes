@@ -1,0 +1,5 @@
+Reconciliation no React:
+
+Quando algum componente sofre algum alteração em um dos seus estados ou 
+se seu componente pai, se houver, sofre alguma alteração, ele entra em um
+fluxo de reconciliação, qué é na prática o inicio de uma nova renderização (rerender)

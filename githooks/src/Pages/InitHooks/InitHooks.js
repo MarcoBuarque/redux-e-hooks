@@ -115,5 +115,3 @@ export default function InitHooks() {
     </view>
   );
 }
-
-export default App;

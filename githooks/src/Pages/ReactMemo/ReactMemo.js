@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import ItemPost from './ItemPost'
+import ItemPost from './../../Components/ItemPost'
 
 export default function ReactMemo() {
   const [postList, setPostList] = useState([])
