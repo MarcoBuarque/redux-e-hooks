@@ -32,10 +32,16 @@ export default function ReactMemo() {
     <>
       <GoBack previousPage={previousPage} />
       <LinkRoutes currentPage='ReactMemo' previousPage={previousPage} />
-      <input onChange={e => setNewPost(e.target.value)} value={newPost}/> 
-      {/* Toda vez que houver acrescimo ou decrescimo de de caracter no text, haverá rerender do 
-      componente PostList. Logo, se não utilizarmos o memo('Component') no ItemPost, sempre haverá o rerender de todos os 
-      items da lista de forma desnecessária, já que ela não foi modificada  */}
+      <div style={{paddingTop: 20}}>
+        <input onChange={e => setNewPost(e.target.value)} value={newPost}/> 
+      </div>
+      <div style={{padding: 30}}>
+        <strong> 
+          Toda vez que houver acrescimo ou decrescimo de de caracter no strong, haverá rerender do 
+        componente PostList. Logo, se não utilizarmos o memo('Component') no ItemPost, sempre haverá o rerender de todos os 
+        items da lista de forma desnecessária, já que ela não foi modificada  
+        </strong>
+      </div>
       <ul>
         {postList.map(item => <ItemPost key={item.id} post={item}/>)}
       </ul>

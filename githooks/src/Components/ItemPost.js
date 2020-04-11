@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-function ItemList({ post }) {
+function ItemPost({ post }) {
   console.log('ItemLIst')
   return (
     <li>
@@ -12,4 +12,4 @@ function ItemList({ post }) {
   )
 }
 
-export default memo(ItemList)
+export default memo(ItemPost)
