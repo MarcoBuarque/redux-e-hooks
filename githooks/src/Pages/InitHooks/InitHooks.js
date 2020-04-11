@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { FaCheckSquare, FaSquare } from 'react-icons/fa'
 
+import { useQuery } from './../../Utils/routesUtils'
+
 import LinkRoutes from './../../Components/LinkRoutes'
 import GoBack from './../../Components/GoBack'
 
@@ -9,6 +11,8 @@ import GoBack from './../../Components/GoBack'
 // useEffect = monitora o ciclo de vida dos componentes e faz a determinada ação de acordo com alterações que esses componentes sofrem
 // a função anonima no retorno do useEffect equivale ao componentWillUnmount
 export default function InitHooks() {
+  const query = useQuery()
+  const previousPage = query.get('previousPage')
 
   const URI = 'https://api.github.com/users/diego3g/repos'
 
@@ -77,8 +81,8 @@ export default function InitHooks() {
 
   return (
     <view style={{ flex: 1, flexDirection:'row' }}>
-      <GoBack previousPage='naoFinalizado' />
-      <LinkRoutes currentPage='/InitHooks' />
+      <GoBack previousPage={previousPage} />
+      <LinkRoutes currentPage='InitHooks' previousPage={previousPage} />
       <view style={{ flex:0.5 }}>
         <h1>Position:</h1>
         <h3>latitude:{location.latitude}</h3>
